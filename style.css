@@ -1,3 +1,4 @@
+
 /* google font */
 /* https://fonts.google.com/specimen/Host+Grotesk?query=grotesk&categoryFilters=Sans+Serif:%2FSans%2F* */
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Archivo+Black&family=Atkinson+Hyperlegible+Mono:ital,wght@0,200..800;1,200..800&family=Bebas+Neue&family=Chango&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Cousine:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Figtree:ital,wght@0,300..900;1,300..900&family=Fira+Code:wght@300..700&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kristi&family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=Neonderthaw&family=Overpass+Mono:wght@300..700&family=Poiret+One&family=Reddit+Mono:wght@200..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sono:wght,MONO@200..800,1&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
@@ -6,16 +7,23 @@
 /* what is the resource I used */
 /* what I learned from it */
 
+/* I want to have my site change color themes everytime you open it
+I want my site stretched text to expand and almost move like a carousel when hovered on it */
+
 :root {
-    --color: #231f5a;
-    --background-color: papayawhip; 
-    --font-family: 'Host Grotesk';
-
-    --body-copy: 1rem;
-    --heading-copy: calc(var(--body-copy) * 2);
-
+    --color: #333;
+    --background-color: #ffffff;
+    --nav-background: #d9d9d9;
+    --font-family: "helvetica-neue-lt-pro", sans-serif;
+    --font-weight: 400;
+    --body-copy: 0.75rem;
     --gutter: 2rem;
-    --vertical: 4rem;
+    --accent: #c300ff;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
 }
 
 body {
@@ -23,30 +31,172 @@ body {
     background-color: var(--background-color);
     font-size: var(--body-copy);
     font-family: var(--font-family);
-    block-size: 100vh;
-    display: grid;
-    grid-template-rows: min-content 1fr min-content;
+    font-weight: var(--font-weight);
+}
+
+.navbar {
+    padding: 1rem var(--gutter);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: var(--background-color);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size:var(--body-copy);
+
+    @media (min-width: 800px) {
+        flex-wrap: nowrap;
+        gap: 2rem;
+        font-size: 0.7rem;
+    }
 }
 
-main {
-    padding-inline: var(--gutter);
-    padding-block: var(--vertical);
+.navbar li {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
 }
 
-h1 {
-    font-size: var(--heading-copy);
+/* have my nav bar stack nicely in mobile as well as desktop */
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/order */
+/* order: 3 moves the school info (2nd item) to the end, pushing it below the email on mobile */
+/* on desktop min-width: 800px it goes back to normal order between name and email */
+.navbar li:nth-child(2) {
+    order: 3;
+    width: 100%;
+
+    @media (min-width: 800px) {
+        order: initial;
+        width: auto;
+    }
 }
 
-ul {
-    padding-inline: var(--gutter);
+.hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding-top: 8rem;  
+    
+    @media (min-width: 800px) {
+        padding-top: 5rem; 
+    }
+}
+
+.stretched-text {
+    font-size: 3rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.8;
+    text-align: center;
+    color: #000;
+    font-family: 'Archivo Black', sans-serif;
+    /* Horizontal Stretch: Use scaleX() */
+    /* https://www.google.com/search?q=how+to+stretch+text+in+code&rlz=1C5CHFA_enCA864CA864&oq=how+to+stretch+text+in+code&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRigATIHCAIQIRigATIHCAMQIRigATIHCAQQIRigATIHCAUQIRiPAtIBCDU2MDZqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8 */
+    /* This is stretching the text horizontally but I can also do it vertical if I wish with the y access */
+    transform: scaleX(1.4);
+    flex-grow: 1;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    z-index: 1;
+    white-space: nowrap;
+    padding-block-end: 1rem;
+    width: auto;
+    max-width: calc(100vw - 1rem);
+    padding-inline: 0.5rem;
+    box-sizing: border-box;
+
+    @media (min-width: 400px) {
+        font-size: 6rem;
+        max-width: calc(100vw - 2rem);
+        padding-inline: 1rem;
+    }
+
+    @media (min-width: 800px) {
+        font-size: 10rem;
+        width: 100vw;
+        max-width: none;
+        padding-inline: var(--gutter);
+    }
+
+    @media (min-width: 1000px) {
+        font-size: 12rem;
+        transform: scaleX(1.7);
+    }
+}
+
+.image-grid {
     display: grid;
-    gap: var(--gutter);
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+    width: 100%;
+    padding: 0.5rem;
+    z-index: 2;
+
+    @media (min-width: 400px) {
+        /* I wanted to have my project stacked and horizontal when in mobile */
+        /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/grid-template-columns */
+        /* repeat = repeated fragment allowing my items to be more compact apposed to regular grid */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    @media (min-width: 800px) {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+    }
 }
 
-hgroup, footer {
-    padding-block: var(--vertical);
-    color: var(--background-color);
-    background-color: var(--color);
-    padding-inline: var(--gutter);
+.image-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.image-placeholder {
+    width: 100%;
+    max-width: 100%;
+    border: 0.2px solid #000;
+    height: auto;
+    border-radius: 1px;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.image-placeholder:hover {
+    transform: translateY(-5px);
+}
+
+.image-title {
+    font-size: var(--body-copy);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #666;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.image-title:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.navbar a:hover {
+    color: var(--accent);
+    text-decoration: underline;
 }
