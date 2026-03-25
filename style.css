@@ -23,6 +23,7 @@ I want my site stretched text to expand and almost move like a carousel when hov
 
 html, body {
     height: 100vh;
+    overflow: hidden;
 }
 
 body {
