@@ -23,7 +23,8 @@ I want my site stretched text to expand and almost move like a carousel when hov
 
 html, body {
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body {
@@ -48,22 +49,26 @@ body {
     list-style: none;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 0.5rem;
     font-size:var(--body-copy);
 
-    @media (min-width: 800px) {
-        flex-wrap: nowrap;
+    @media (width > 800px) {
+        flex-direction: row;
+        justify-content: row;
+        align-items: center;
         gap: 2rem;
         font-size: 0.7rem;
     }
 }
 
 .navbar li {
-    font-size: 0.7rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
+    width: 100%;
+
+    @media (width > 800px) {
+        width: auto;
+    }
 }
 
 /* have my nav bar stack nicely in mobile as well as desktop */
@@ -74,21 +79,21 @@ body {
     order: 3;
     width: 100%;
 
-    @media (min-width: 800px) {
-        order: initial;
+    @media (width > 800px) {
+        order: 0;
         width: auto;
     }
 }
 
 .hero-section {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: relative;
     padding-top: 8rem;  
     
-    @media (min-width: 800px) {
+    @media (width > 800px) {
         padding-top: 5rem; 
     }
 }
@@ -117,20 +122,20 @@ body {
     padding-inline: 0.5rem;
     box-sizing: border-box;
 
-    @media (min-width: 400px) {
+    @media (width > 400px) {
         font-size: 6rem;
         max-width: calc(100vw - 2rem);
         padding-inline: 1rem;
     }
 
-    @media (min-width: 800px) {
+    @media (width > 800px) {
         font-size: 10rem;
         width: 100vw;
         max-width: none;
         padding-inline: var(--gutter);
     }
 
-    @media (min-width: 1000px) {
+    @media (width > 1000px) {
         font-size: 12rem;
         transform: scaleX(1.7);
     }
@@ -144,7 +149,7 @@ body {
     padding: 0.5rem;
     z-index: 2;
 
-    @media (min-width: 400px) {
+    @media (width > 400px) {
         /* I wanted to have my project stacked and horizontal when in mobile */
         /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/grid-template-columns */
         /* repeat = repeated fragment allowing my items to be more compact apposed to regular grid */
@@ -153,7 +158,7 @@ body {
         padding: 0.5rem;
     }
 
-    @media (min-width: 800px) {
+    @media (width > 800px) {
         grid-template-columns: repeat(5, 1fr);
         gap: 1rem;
         padding: 1rem;
