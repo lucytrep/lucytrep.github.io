@@ -1,0 +1,19 @@
+html, body { block-size: 100%; }
+
+body {
+	--base: 1rem;
+
+	display: grid;
+	font-family: sans-serif;
+	padding: var(--base);
+	place-content: center;
+	place-items: center;
+	row-gap: var(--base);
+}
+
+button {
+	background-color: deepskyblue;
+	border-radius: calc(var(--base) / 2);
+	cursor: pointer; /* Show the Mickey-Mouse hand! */
+	padding: calc(var(--base) / 2);
+}

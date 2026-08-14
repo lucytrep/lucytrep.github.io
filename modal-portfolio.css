@@ -1,0 +1,62 @@
+/* Portfolio: after verbatim course `setup.css` / `dialog.css`, restore shell layout
+   and match modal UI to existing site tokens (does not edit professor files). */
+body {
+	display: block;
+	padding: 0;
+	place-content: unset;
+	place-items: unset;
+	row-gap: unset;
+	font-family: var(--font-family);
+}
+
+#modal {
+	margin-top: 0.35rem;
+	background-color: var(--background-color);
+	color: var(--color);
+	border: 0.2px solid #000;
+	border-radius: 1px;
+	font-family: var(--font-family);
+	font-size: var(--body-copy);
+	font-weight: var(--font-weight);
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+#modal:focus {
+	outline: none;
+}
+
+#modal:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
+dialog {
+	font-family: var(--font-family);
+	font-size: var(--body-copy);
+	color: var(--color);
+	background-color: var(--background-color);
+}
+
+dialog p {
+	max-width: min(100%, 32rem);
+	line-height: 1.5;
+	text-align: left;
+	justify-self: stretch;
+}
+
+dialog button {
+	background-color: var(--accent);
+	color: var(--background-color);
+	border-radius: 1px;
+	font-family: var(--font-family);
+}
+
+dialog button:focus {
+	outline: none;
+}
+
+dialog button:focus-visible {
+	outline: 2px solid var(--color);
+	outline-offset: 2px;
+}

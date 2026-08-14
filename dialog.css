@@ -1,0 +1,28 @@
+/* Stops the page from scrolling when there is an open one: */
+body:has(dialog[open]) { overflow: hidden; }
+
+dialog {
+	/* Style the `dialog` itself, which is `display: none;` to start. */
+	background-color: white;
+	border-radius: var(--base);
+	filter: drop-shadow(0 0.5rem 1rem rgb(0 0 0 / 50%)); /* Some depth. */
+	gap: calc(2 * var(--base));
+	justify-items: center; /* Center the children. */
+	padding: var(--base);
+
+	/* Defaults to `position: absolute;`, this centers it: */
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	position: fixed; /* In the viewport. */
+	translate: -50% -50%;
+
+	/* When JS adds the `open` attribute… */
+	&[open] { display: grid } /* `block` is default, but we can override. */
+
+	button { background-color: tomato; } /* Always have a clear “close” `button`! */
+
+	&::backdrop {
+		background-color: rgb(0 0 0 / 66%); /* A dark overlay. */
+		pointer-events: none; /* Let clicks pass through to our `document` listener. */
+	}
+}
